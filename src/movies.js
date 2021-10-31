@@ -19,15 +19,37 @@ function orderByYear() {}
 function orderAlphabetically() {}
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes() {}
+function turnHoursToMinutes(movies) {
+  const newArr = movies.map(movie => {
+    duration = movie.duration;
+    
+    if (duration.length > 5) {
+      let hours = parseInt(duration.substring(0, 1));
+      let minutes = parseInt(duration.substring(3, 5));
+      let durationInMinutes = hours * 60 + minutes;
+      return { ...movie, duration: durationInMinutes };
+    } else if (duration.length > 3) {
+      let minutes = parseInt(duration.substring(0, 2));
+      let durationInMinutes = minutes;
+      movie.duration = durationInMinutes;
+      return { ...movie, duration: durationInMinutes };
+    } else if (duration.length < 3) {
+      console.log(duration);
+      let hours = parseInt(duration.substring(0, 1));
+      let durationInMinutes = hours * 60;
+      movie.duration = durationInMinutes;
+      return { ...movie, duration: durationInMinutes };
+    } else if(duration.length === 0){
+      return { ...movie, duration: 0 };
+    }
+  });
+  return newArr;
+}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg() {}
 
 
-
-// The following is required to make unit tests work.
-/* Environment setup. Do not modify the below code. */
 if (typeof module !== 'undefined') {
   module.exports = {
     getAllDirectors,
